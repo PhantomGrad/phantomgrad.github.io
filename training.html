@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training &amp; Social Impact — Phantom Grad Lab</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-body">
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Phantom Grad Lab</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="research.html">Research</a></li>
+        <li><a href="consultancy.html">Consultancy</a></li>
+        <li><a href="training.html" class="active">Training</a></li>
+        <li><a href="collaborators.html">Collaborators</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="startups.html">Startups</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="connect.html">Let's Connect</a></li>
+      </ul>
+      <a class="nav-substack" href="#" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V6.81h21.08v1.432zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v1.431h21.08V0z"/></svg>
+        Blog
+      </a>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <p class="section-label">Phantom Grad Lab</p>
+      <h1>Training &amp; Social Impact</h1>
+      <p class="lead">Teaching, workshops, and initiatives that extend AI knowledge beyond the lab — into classrooms, communities, and underserved regions.</p>
+    </div>
+  </div>
+
+  <!-- ===== COURSES ===== -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Teaching</p>
+      <h2>Courses at BITS Pilani</h2>
+      <div style="display:flex; flex-direction:column; gap:0.75rem;">
+
+        <div class="card">
+          <h3>Large Language Models &amp; Generative AI</h3>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">Department of Computer Science &amp; Information Systems · BITS Pilani</p>
+          <p style="font-size:0.88rem;">
+            An advanced course covering the foundations and frontiers of large language models — transformer
+            architecture, pre-training, instruction tuning, RLHF, prompt engineering, evaluation, and
+            responsible deployment. Includes hands-on projects using state-of-the-art open and closed models.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORKSHOPS ===== -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Outreach</p>
+      <h2>Workshops &amp; External Training</h2>
+      <div class="coming-soon">
+        <div class="coming-soon-title">Coming Soon</div>
+        We are planning workshops on AI and LLMs for industry professionals, faculty, and policymakers.
+        Details will be posted here as they are confirmed.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL IMPACT ===== -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Social Impact</p>
+      <h2>Community &amp; Outreach</h2>
+      <div class="card" style="max-width:680px;">
+        <h3 style="margin-bottom:0.6rem;">AI for Rural Education</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted);">
+          We have conducted research on the impact of large language models on K-12 education in rural India,
+          working with student volunteers to understand how AI tools are being adopted — and where gaps remain —
+          in under-resourced educational settings. This work was published in <em>Scientific Reports</em> (2025)
+          and was supported by the WISE–IIE Higher Education Consortium grant.
+        </p>
+        <div style="margin-top:1rem;">
+          <a href="https://arxiv.org/abs/2505.03163" target="_blank" rel="noopener"
+             style="font-size:0.82rem; font-weight:500; text-decoration:none; color:var(--text-muted);">
+            Read the paper ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="card" style="max-width:680px; margin-top:0.75rem;">
+        <h3 style="margin-bottom:0.6rem;">AI for River &amp; Climate Conservation</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted);">
+          In partnership with The Nature Conservancy, we applied AI and ML methods to river basin management —
+          quantifying the effects of land use and climate change on hydrology, and identifying degraded riparian
+          corridors for targeted conservation efforts.
+        </p>
+        <div style="margin-top:1rem;">
+          <a href="research.html#projects"
+             style="font-size:0.82rem; font-weight:500; text-decoration:none; color:var(--text-muted);">
+            View project details →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>Phantom Grad Lab</strong><br>
+        BITS Pilani, Rajasthan, India — 333031
+      </div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="people.html">People</a>
+        <a href="connect.html">Contact</a>
+        <a href="#" target="_blank" rel="noopener">Substack</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
