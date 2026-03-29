@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startups — Phantom Grad Lab</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-body">
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Phantom Grad Lab</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="research.html">Research</a></li>
+        <li><a href="consultancy.html">Consultancy</a></li>
+        <li><a href="training.html">Training</a></li>
+        <li><a href="collaborators.html">Collaborators</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="startups.html" class="active">Startups</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="connect.html">Let's Connect</a></li>
+      </ul>
+      <a class="nav-substack" href="#" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V6.81h21.08v1.432zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v1.431h21.08V0z"/></svg>
+        Blog
+      </a>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <p class="section-label">Phantom Grad Lab</p>
+      <h1>Startups</h1>
+      <p class="lead">Companies founded or incubated out of our lab's research and expertise.</p>
+    </div>
+  </div>
+
+  <!-- ===== STARTUPS ===== -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Incubated</p>
+      <h2>Lab Startups</h2>
+
+      <div class="startup-card">
+        <h3>Genquery Technology Services Pvt. Ltd.</h3>
+        <p class="startup-type">Research Consultancy · Founded out of Phantom Grad Lab</p>
+        <p class="startup-desc">
+          Genquery is a research consultancy firm specializing in evaluation, benchmarking, and forward-looking
+          research analysis for AI and ML products. The company works with industry partners to design rigorous
+          assessment frameworks, conduct structured research studies, and provide expert analysis to guide
+          product strategy and development in AI-driven domains.
+        </p>
+      </div>
+
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-top:2rem;">
+        More startups coming soon.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>Phantom Grad Lab</strong><br>
+        BITS Pilani, Rajasthan, India — 333031
+      </div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="people.html">People</a>
+        <a href="connect.html">Contact</a>
+        <a href="#" target="_blank" rel="noopener">Substack</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

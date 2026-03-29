@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research — Phantom Grad Lab</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-body">
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Phantom Grad Lab</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="research.html" class="active">Research</a></li>
+        <li><a href="consultancy.html">Consultancy</a></li>
+        <li><a href="training.html">Training</a></li>
+        <li><a href="collaborators.html">Collaborators</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="startups.html">Startups</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="connect.html">Let's Connect</a></li>
+      </ul>
+      <a class="nav-substack" href="#" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V6.81h21.08v1.432zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v1.431h21.08V0z"/></svg>
+        Blog
+      </a>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <p class="section-label">Phantom Grad Lab</p>
+      <h1>Research</h1>
+      <p class="lead">Publications, funded projects, research themes, and academic collaborators.</p>
+    </div>
+  </div>
+
+  <!-- ===== RESEARCH THEMES ===== -->
+  <section class="section" id="themes">
+    <div class="container">
+      <p class="section-label">Active Themes</p>
+      <h2>What We're Working On</h2>
+      <div class="theme-grid">
+        <div class="theme-card">
+          <h3>AI Agents &amp; LLMs</h3>
+          <p>Evaluation, benchmarking, and applications — negotiations, planning, reasoning, and real-world deployments.</p>
+        </div>
+        <div class="theme-card">
+          <h3>AI for Education</h3>
+          <p>Intelligent tutoring systems, automated grading, LLM-assisted teaching, and studying AI adoption in classrooms.</p>
+        </div>
+        <div class="theme-card">
+          <h3>AI for Software Engineering</h3>
+          <p>Code generation, test synthesis, type inference, loop invariant generation, and formal verification with LLMs.</p>
+        </div>
+        <div class="theme-card">
+          <h3>Reinforcement Learning &amp; LLM Training</h3>
+          <p>Policy optimization, LoRA fine-tuning, evolutionary meta-solvers, and hybrid supervised-RL frameworks.</p>
+        </div>
+        <div class="theme-card">
+          <h3>Mechanistic Interpretability</h3>
+          <p>Understanding polysemanticity, circuits, and internal representations within transformer-based models.</p>
+        </div>
+        <div class="theme-card">
+          <h3>Multi-Modal Foundation Models</h3>
+          <p>Vision transformers, time-series foundation models, and tabular model interpretability.</p>
+        </div>
+        <div class="theme-card">
+          <h3>AI for Science &amp; Environment</h3>
+          <p>Machine learning for hydrological modeling, wetland assessment, and climate-driven river analysis.</p>
+        </div>
+        <div class="theme-card">
+          <h3>Distributed Systems &amp; Edge Computing</h3>
+          <p>Geo-distributed analytics, federated learning, WAN-aware query optimization, and edge intelligence.</p>
+        </div>
+        <div class="theme-card">
+          <h3>Data Mining &amp; Parallel Computing</h3>
+          <p>Scalable clustering algorithms (DBSCAN, OPTICS, SLINK) on commodity clusters and multicore systems.</p>
+        </div>
+      </div>
+
+      <p class="section-label" style="margin-top:2.5rem;">Seeking Collaborators</p>
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">Areas we are actively exploring and looking for research partners in:</p>
+      <div class="theme-grid">
+        <div class="theme-card aspirational">
+          <h3>AI Safety &amp; Jailbreaking</h3>
+          <p>Adversarial robustness, prompt injection, and safety alignment of LLMs.</p>
+        </div>
+        <div class="theme-card aspirational">
+          <h3>Multi-lingual &amp; Cultural AI</h3>
+          <p>LLM performance and bias across languages, scripts, and cultural contexts.</p>
+        </div>
+        <div class="theme-card aspirational">
+          <h3>Games &amp; Sports AI</h3>
+          <p>Applying LLMs and RL to game-playing, strategy, and sports analytics.</p>
+        </div>
+        <div class="theme-card aspirational">
+          <h3>Bias in LLMs</h3>
+          <p>Measuring and mitigating cultural, linguistic, and length biases in language models.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PUBLICATIONS ===== -->
+  <section class="section" id="publications">
+    <div class="container">
+      <p class="section-label">Publications</p>
+      <h2>Papers &nbsp;<span id="pub-count" style="font-size:1rem; font-weight:400; color:var(--text-muted)"></span></h2>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-cat="all">All</button>
+        <button class="filter-btn" data-cat="cat1">AI Agents &amp; LLMs</button>
+        <button class="filter-btn" data-cat="cat2">AI for Education</button>
+        <button class="filter-btn" data-cat="cat3">AI for SWE</button>
+        <button class="filter-btn" data-cat="cat4">RL &amp; Training</button>
+        <button class="filter-btn" data-cat="cat5">Interpretability</button>
+        <button class="filter-btn" data-cat="cat6">Multi-Modal</button>
+        <button class="filter-btn" data-cat="cat7">AI for Science</button>
+        <button class="filter-btn" data-cat="cat8">Distributed Systems</button>
+        <button class="filter-btn" data-cat="cat9">Data Mining</button>
+        <button class="filter-btn" data-cat="cat10">AI Safety</button>
+      </div>
+
+      <div class="pub-list">
+
+        <!-- ── 2026 ── -->
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2601.04387" target="_blank" rel="noopener">The Language of Bargaining: Linguistic Effects in LLM Negotiations</a></div>
+          <div class="pub-authors">Sindhu Bharadwaj, Dhruv Kumar, et al.</div>
+          <div class="pub-venue">arXiv preprint · 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2601.04387" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat5">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2601.08181" target="_blank" rel="noopener">TabPFN Through The Looking Glass: An Interpretability Study</a></div>
+          <div class="pub-authors">Dhruv Kumar, et al.</div>
+          <div class="pub-venue">arXiv preprint · 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2601.08181" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2601.09714" target="_blank" rel="noopener">Evaluating Novelty in AI-Generated Research Plans Using Multi-Workflow LLM Pipelines</a></div>
+          <div class="pub-authors">Dhruv Kumar, et al.</div>
+          <div class="pub-venue">arXiv preprint · 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2601.09714" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2601.12024" target="_blank" rel="noopener">A Multi-Agent System for Generating Actionable Business Advice</a></div>
+          <div class="pub-authors">Dhruv Kumar, et al.</div>
+          <div class="pub-venue">arXiv preprint · 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2601.12024" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat4">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2601.12338" target="_blank" rel="noopener">Actionable Advice from Reviews via Mixture of LoRA Experts</a></div>
+          <div class="pub-authors">Dhruv Kumar, et al.</div>
+          <div class="pub-venue">arXiv preprint · 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2601.12338" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2601.13453" target="_blank" rel="noopener">PhysicsSolutionAgent: Towards Multimodal Explanations for Numerical Physics Problem Solving</a></div>
+          <div class="pub-authors">Dhruv Kumar, et al.</div>
+          <div class="pub-venue">arXiv preprint · 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2601.13453" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2601.19214" target="_blank" rel="noopener">A Hybrid Supervised-LLM Pipeline for Actionable Suggestion Mining in Unstructured Customer Reviews</a></div>
+          <div class="pub-authors">Dhruv Kumar, et al.</div>
+          <div class="pub-venue">arXiv preprint · 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2601.19214" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2601.21360" target="_blank" rel="noopener">The Compliance Paradox: Semantic-Instruction Decoupling in Automated Academic Code Evaluation</a></div>
+          <div class="pub-authors">Dhruv Kumar, et al.</div>
+          <div class="pub-venue">arXiv preprint · 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2601.21360" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat4">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2602.06627" target="_blank" rel="noopener">Trust Regions Sell, But Who's Buying?</a></div>
+          <div class="pub-authors">Dhruv Kumar, et al.</div>
+          <div class="pub-venue">arXiv preprint · 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2602.06627" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2504.10489" target="_blank" rel="noopener">Roamify: Designing and Evaluating an LLM-Based Google Chrome Extension for Personalised Itinerary Planning</a></div>
+          <div class="pub-authors">Vikranth Udandarao, Noel Abraham Tiju, Muthuraj Vairamuthu, Harsh Mistry, and Dhruv Kumar</div>
+          <div class="pub-venue">WWW 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2504.10489" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2503.12479" target="_blank" rel="noopener">Sakshm AI: Advancing AI-Assisted Coding Education for Engineering Students in India Through Socratic Tutoring and Comprehensive Feedback</a></div>
+          <div class="pub-authors">Raj Gupta, Harshit Goyal, Dhruv Kumar, Apurv Mehra, Sanchit Sharma, Kashish Mittal, and Jagat Sesh Challa</div>
+          <div class="pub-venue">ACM JCSS 2026</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2503.12479" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2025 ── -->
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2505.03163" target="_blank" rel="noopener">The Impact of Large Language Models on K-12 Education in Rural India: A Thematic Analysis of Student Volunteer's Perspectives</a></div>
+          <div class="pub-authors">Harshita Goyal, Garima Garg, Prisha Mordia, Veena Ramachandran, Dhruv Kumar, and Jagat Sesh Challa</div>
+          <div class="pub-venue">Scientific Reports · 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2505.03163" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://doi.org/10.18653/v1/2025.emnlp-main.675" target="_blank" rel="noopener">Investigating Pedagogical Teacher and Student LLM Agents: Genetic Adaptation Meets Retrieval-Augmented Generation Across Learning Styles</a></div>
+          <div class="pub-authors">Debdeep Sanyal, Agniva Maiti, Umakanta Maharana, Dhruv Kumar, Ankur Mali, C. Lee Giles, and Murari Mandal</div>
+          <div class="pub-venue">EMNLP 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.18653/v1/2025.emnlp-main.675" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat3">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2508.00422" target="_blank" rel="noopener">Automated Type Annotation in Python Using Large Language Models</a></div>
+          <div class="pub-authors">Varun Bharti, Shashwat Jha, Dhruv Kumar, and Pankaj Jalote</div>
+          <div class="pub-venue">arXiv preprint · 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2508.00422" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat3">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2508.00419" target="_blank" rel="noopener">Loop Invariant Generation: A Hybrid Framework of Reasoning Optimised LLMs and SMT Solvers</a></div>
+          <div class="pub-authors">Varun Bharti, Shashwat Jha, Dhruv Kumar, and Pankaj Jalote</div>
+          <div class="pub-venue">AIWare 2025</div>
+          <div class="pub-badges"><span class="badge badge-award">★ Best Paper</span></div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2508.00419" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3702652.3744220" target="_blank" rel="noopener">Rubric Is All You Need: Improving LLM-Based Code Evaluation With Question-Specific Rubrics</a></div>
+          <div class="pub-authors">Aditya Pathak, Rachit Gandhi, Vaibhav Uttam, et al., Jagat Sesh Challa, and Dhruv Kumar</div>
+          <div class="pub-venue">ICER 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3702652.3744220" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2506.20993" target="_blank" rel="noopener">SAC: A Framework for Measuring and Inducing Personality Traits in LLMs with Dynamic Intensity Control</a></div>
+          <div class="pub-authors">Adithya Chittem, Aishna Shrivastava, Sai Tarun Pendela, Jagat Sesh Challa, and Dhruv Kumar</div>
+          <div class="pub-venue">ICAART 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2506.20993" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat4">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2508.18884" target="_blank" rel="noopener">HAEPO: History-Aggregated Exploratory Policy Optimization</a></div>
+          <div class="pub-authors">Gaurish Trivedi, Alakh Sharma, Kartikey Singh Bhandari, Dhruv Kumar, Pratik Narang, and Jagat Sesh Challa</div>
+          <div class="pub-venue">arXiv preprint · 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2508.18884" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat5">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2508.16950" target="_blank" rel="noopener">Disentangling Polysemantic Neurons with a Null-Calibrated Polysemanticity Index and Causal Patch Interventions</a></div>
+          <div class="pub-authors">Manan Gupta and Dhruv Kumar</div>
+          <div class="pub-venue">arXiv preprint · 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2508.16950" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat6">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2509.05801" target="_blank" rel="noopener">time2time: Causal Intervention in Hidden States to Simulate Rare Events in Time Series Foundation Models</a></div>
+          <div class="pub-authors">Debdeep Sanyal, Aaryan Nagpal, Dhruv Kumar, Murari Mandal, and Saurabh Deshpande</div>
+          <div class="pub-venue">NeurIPS 2025 Workshop on Time Series Foundation Models (BERT2S)</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2509.05801" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2509.07389" target="_blank" rel="noopener">Talking with Oompa Loompas: A Novel Framework for Evaluating Linguistic Acquisition of LLM Agents</a></div>
+          <div class="pub-authors">Sankalp Tattwadarshi Swain, Anshika Krishnatray, Dhruv Kumar, and Jagat Sesh Challa</div>
+          <div class="pub-venue">arXiv preprint · 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2509.07389" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat4">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2509.23462" target="_blank" rel="noopener">Generative Evolutionary Meta-Solver (GEMS): Scalable Surrogate-Free Multi-Agent Learning</a></div>
+          <div class="pub-authors">Alakh Sharma, Gaurish Trivedi, Kartikey Singh Bhandari, Yash Sinha, Dhruv Kumar, Pratik Narang, and Jagat Sesh Challa</div>
+          <div class="pub-venue">arXiv preprint · 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2509.23462" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://doi.org/10.18653/v1/2025.findings-emnlp.1120" target="_blank" rel="noopener">ReviewEval: An Evaluation Framework for AI-Generated Reviews</a></div>
+          <div class="pub-authors">Madhav Krishan Garg, Tejash Prasad, Tanmay Singhal, Chhavi Kirtani, Murari Mandal, and Dhruv Kumar</div>
+          <div class="pub-venue">Findings of EMNLP 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.18653/v1/2025.findings-emnlp.1120" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat6">
+          <div class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2025.3571735" target="_blank" rel="noopener">Transformers for Vision: A Survey on Innovative Methods for Computer Vision</a></div>
+          <div class="pub-authors">Balamurugan Palanisamy, Vikas Hassija, Arpita Chatterjee, Arpita Mandal, Debanshi Chakraborty, Amit Pandey, G. Sai Sesha Chalapathi, and Dhruv Kumar</div>
+          <div class="pub-venue">IEEE Access 13 · 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1109/ACCESS.2025.3571735" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://www.nature.com/articles/s41598-025-93871-z" target="_blank" rel="noopener">The Role of Generative AI Tools in Shaping Mechanical Engineering Education from an Undergraduate Perspective</a></div>
+          <div class="pub-authors">Harshal Akolekar, Piyush Jhamnani, Vikash Kumar, et al., Jagat Sesh Challa, and Dhruv Kumar</div>
+          <div class="pub-venue">Scientific Reports 15 · 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://www.nature.com/articles/s41598-025-93871-z" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3716640.3716657" target="_blank" rel="noopener">Analyzing LLM Usage in an Advanced Computing Class in India</a></div>
+          <div class="pub-authors">Utkarsh Arora, Anupam Garg, Aryan Gupta, et al., and Dhruv Kumar</div>
+          <div class="pub-venue">ACE 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3716640.3716657" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2502.06279" target="_blank" rel="noopener">DebateBench: A Challenging Long Context Reasoning Benchmark For Large Language Models</a></div>
+          <div class="pub-authors">Utkarsh Tiwari, Aryan Seth, Adi Mukherjee, Kaavya Mer, Kavish, and Dhruv Kumar</div>
+          <div class="pub-venue">NAACL SRW 2025</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2502.06279" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2024 ── -->
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3636243.3636257" target="_blank" rel="noopener">"It's not like Jarvis, but it's pretty close!" — Examining ChatGPT's Usage among Undergraduate Students in Computer Science</a></div>
+          <div class="pub-authors">Ritvik Budhiraja, Ishika Joshi, Jagat Sesh Challa, Harshal D. Akolekar, and Dhruv Kumar</div>
+          <div class="pub-venue">ACE 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3636243.3636257" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat3">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3664646.3664765" target="_blank" rel="noopener">A Comparative Analysis of Large Language Models for Code Documentation Generation</a></div>
+          <div class="pub-authors">Shubhang Shekhar Dvivedi, Vyshnav Vijay, Sai Leela Rahul Pujari, Shoumik Lodh, and Dhruv Kumar</div>
+          <div class="pub-venue">AIware 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3664646.3664765" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3613905.3651050" target="_blank" rel="noopener">From Cash to Cashless: UPI's Impact on Spending Behavior among Indian Users</a></div>
+          <div class="pub-authors">Harshal Dev, Raj Gupta, and Dhruv Kumar</div>
+          <div class="pub-venue">CHI EA 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3613905.3651050" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3674829.3675082" target="_blank" rel="noopener">Comuniqa: Exploring Large Language Models For Improving English Speaking Skills</a></div>
+          <div class="pub-authors">Shikhar Sharma, Manas Mhasakar, Apurv Mehra, Utkarsh Venaik, Ujjwal Singhal, Dhruv Kumar, and Kashish Mittal</div>
+          <div class="pub-venue">COMPASS 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3674829.3675082" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3626252.3630803" target="_blank" rel="noopener">ChatGPT in the Classroom: An Analysis of Its Strengths and Weaknesses for Solving Undergraduate Computer Science Questions</a></div>
+          <div class="pub-authors">Ishika Joshi, Ritvik Budhiraja, Harshal Dev, et al., Harshal D. Akolekar, and Dhruv Kumar</div>
+          <div class="pub-venue">SIGCSE 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3626252.3630803" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat3">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3643795.3648396" target="_blank" rel="noopener">Unit Test Generation using Generative AI: A Comparative Performance Analysis of Autogeneration Tools</a></div>
+          <div class="pub-authors">Shreya Bhatia, Tarushi Gandhi, Dhruv Kumar, and Pankaj Jalote</div>
+          <div class="pub-venue">LLM4CODE @ ICSE 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3643795.3648396" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2401.15605" target="_blank" rel="noopener">AI as a Medical Ally: Evaluating ChatGPT's Usage and Impact in Indian Healthcare</a></div>
+          <div class="pub-authors">Aryaman Raina, Prateek Mishra, Harshit Goyal, and Dhruv Kumar</div>
+          <div class="pub-venue">arXiv preprint · 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2401.15605" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2402.01687" target="_blank" rel="noopener">"Which LLM should I use?": Evaluating LLMs for Tasks Performed by Undergraduate Computer Science Students in India</a></div>
+          <div class="pub-authors">Vibhor Agarwal, Nakul Thureja, Madhav Krishan Garg, Sahiti Dharmavaram, Meghna, and Dhruv Kumar</div>
+          <div class="pub-venue">arXiv preprint · 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2402.01687" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2407.16805" target="_blank" rel="noopener">TAMIGO: Empowering Teaching Assistants using LLM-Assisted Viva and Code Assessment in an Advanced Computing Class</a></div>
+          <div class="pub-authors">Anishka, Diksha Sethi, Nipun Gupta, Shikhar Sharma, Srishti Jain, Ujjwal Singhal, and Dhruv Kumar</div>
+          <div class="pub-venue">arXiv preprint · 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2407.16805" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat1">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2401.15589" target="_blank" rel="noopener">OpineBot: Class Feedback Reimagined Using a Conversational LLM</a></div>
+          <div class="pub-authors">Henansh Tanwar, Kunal Shrivastva, Rahul Singh, and Dhruv Kumar</div>
+          <div class="pub-venue">arXiv preprint · 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2401.15589" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat3">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2412.03693" target="_blank" rel="noopener">System Test Case Design from Requirements Specifications: Insights and Challenges of Using ChatGPT</a></div>
+          <div class="pub-authors">Shreya Bhatia, Tarushi Gandhi, Dhruv Kumar, and Pankaj Jalote</div>
+          <div class="pub-venue">arXiv preprint · 2024</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2412.03693" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2023 ── -->
+
+        <div class="pub-card" data-cat="cat8">
+          <div class="pub-title"><a href="https://doi.org/10.1109/CCGRID57682.2023.00046" target="_blank" rel="noopener">AggFirstJoin: Optimizing Geo-Distributed Joins using Aggregation-Based Transformations</a></div>
+          <div class="pub-authors">Dhruv Kumar, Sohaib Ahmad, Abhishek Chandra, and Ramesh K. Sitaraman</div>
+          <div class="pub-venue">CCGrid 2023</div>
+          <div class="pub-badges"><span class="badge badge-award">★ Best Paper</span></div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1109/CCGRID57682.2023.00046" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat2">
+          <div class="pub-title"><a href="https://arxiv.org/abs/2309.10694" target="_blank" rel="noopener">"With Great Power Comes Great Responsibility!": Student and Instructor Perspectives on the Influence of LLMs on Undergraduate Engineering Education</a></div>
+          <div class="pub-authors">Ishika Joshi, Ritvik Budhiraja, Pranav Deepak Tanna, et al., Jagat Sesh Challa, and Dhruv Kumar</div>
+          <div class="pub-venue">arXiv preprint · 2023</div>
+          <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2309.10694" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat7">
+          <div class="pub-title"><a href="https://doi.org/10.1007/s11356-023-27556-3" target="_blank" rel="noopener">Wetland Functional Assessment and Uncertainty Analysis Using Fuzzy Alpha-Cut–Based Modified Hydrogeomorphic Approach</a></div>
+          <div class="pub-authors">A. Sharma, Dhruv Kumar, S. Rallapalli, et al.</div>
+          <div class="pub-venue">Environmental Science &amp; Pollution Research 30 · 2023</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1007/s11356-023-27556-3" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat8">
+          <div class="pub-title"><a href="https://doi.org/10.1109/CCGRIDW59191.2023.00067" target="_blank" rel="noopener">AggFirstJoin: Optimizing Geo-Distributed Joins (Workshop Version)</a></div>
+          <div class="pub-authors">Dhruv Kumar, Sohaib Ahmad, Abhishek Chandra, and Ramesh K. Sitaraman</div>
+          <div class="pub-venue">CCGridW 2023</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1109/CCGRIDW59191.2023.00067" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2022 ── -->
+
+        <div class="pub-card" data-cat="cat8">
+          <div class="pub-title"><a href="https://doi.org/10.1109/IPDPS53621.2022.00100" target="_blank" rel="noopener">HACCS: Heterogeneity-Aware Clustered Client Selection for Accelerated Federated Learning</a></div>
+          <div class="pub-authors">Joel Wolfrath, Nikhil Sreekumar, Dhruv Kumar, Yuanli Wang, and Abhishek Chandra</div>
+          <div class="pub-venue">IPDPS 2022</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1109/IPDPS53621.2022.00100" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat8">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3517206.3526268" target="_blank" rel="noopener">Towards WAN-Aware Join Sampling over Geo-Distributed Data</a></div>
+          <div class="pub-authors">Dhruv Kumar, Joel Wolfrath, Abhishek Chandra, and Ramesh K. Sitaraman</div>
+          <div class="pub-venue">EdgeSys @ EuroSys 2022</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3517206.3526268" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat7">
+          <div class="pub-title"><a href="https://doi.org/10.1007/s11356-022-20385-w" target="_blank" rel="noopener">Cloud-Based Neuro-Fuzzy Hydro-Climatic Model for Water Quality Assessment under Uncertainty and Sensitivity</a></div>
+          <div class="pub-authors">A. Jain, S. Rallapalli, and Dhruv Kumar</div>
+          <div class="pub-venue">Environmental Science &amp; Pollution Research 29 · 2022</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1007/s11356-022-20385-w" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat7">
+          <div class="pub-title"><a href="https://doi.org/10.1007/978-981-16-7857-8_17" target="_blank" rel="noopener">Simulating Landscape Hydrologic Connectivity in a Precise Manner Using Hydro-Conditioning</a></div>
+          <div class="pub-authors">R. Srinivas, M. Drewitz, J. Magner, A. P. Singh, Dhruv Kumar, Y. B. Katpatal</div>
+          <div class="pub-venue">Advances in Computational Modeling and Simulation, Springer · 2022</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1007/978-981-16-7857-8_17" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2021 ── -->
+
+        <div class="pub-card" data-cat="cat8">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3453142.3491276" target="_blank" rel="noopener">AggNet: Cost-Aware Aggregation Networks for Geo-Distributed Streaming Analytics</a></div>
+          <div class="pub-authors">Dhruv Kumar, Sohaib Ahmad, Abhishek Chandra, and Ramesh K. Sitaraman</div>
+          <div class="pub-venue">SEC 2021</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3453142.3491276" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat8">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3434770.3459734" target="_blank" rel="noopener">Accelerated Training via Device Similarity in Federated Learning</a></div>
+          <div class="pub-authors">Yuanli Wang, Joel Wolfrath, Nikhil Sreekumar, Dhruv Kumar, and Abhishek Chandra</div>
+          <div class="pub-venue">EdgeSys @ EuroSys 2021</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3434770.3459734" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2020 ── -->
+
+        <div class="pub-card" data-cat="cat9">
+          <div class="pub-title"><a href="https://doi.org/10.1007/S41060-020-00208-2" target="_blank" rel="noopener">Grid-R-Tree: A Data Structure for Efficient Neighborhood and Nearest Neighbor Queries in Data Mining</a></div>
+          <div class="pub-authors">Poonam Goyal, Jagat Sesh Challa, Dhruv Kumar, Anuvind Bhat, Sundar Balasubramaniam, and Navneet Goyal</div>
+          <div class="pub-venue">International Journal of Data Science and Analytics 10 · 2020</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1007/S41060-020-00208-2" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat8">
+          <div class="pub-title"><a href="https://doi.org/10.1109/SEC50012.2020.00023" target="_blank" rel="noopener">Exploiting Data Heterogeneity for Performance and Reliability in Federated Learning (Poster)</a></div>
+          <div class="pub-authors">Yuanli Wang, Dhruv Kumar, and Abhishek Chandra</div>
+          <div class="pub-venue">SEC 2020</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1109/SEC50012.2020.00023" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2019 ── -->
+
+        <div class="pub-card" data-cat="cat8">
+          <div class="pub-title"><a href="https://doi.org/10.1145/3341617.3326144" target="_blank" rel="noopener">A TTL-Based Approach for Data Aggregation in Geo-Distributed Streaming Analytics</a></div>
+          <div class="pub-authors">Dhruv Kumar, Jian Li, Abhishek Chandra, and Ramesh K. Sitaraman</div>
+          <div class="pub-venue">Proc. ACM MACS 3(2) · 2019</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/3341617.3326144" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <div class="pub-card" data-cat="cat8">
+          <div class="pub-title">DeCaf: Iterative Collaborative Processing over the Edge</div>
+          <div class="pub-authors">Dhruv Kumar, Aravind Alagiri Ramkumar, Rohit Sindhu, and Abhishek Chandra</div>
+          <div class="pub-venue">HotEdge 2019</div>
+        </div>
+
+        <!-- ── 2018 ── -->
+
+        <div class="pub-card" data-cat="cat9">
+          <div class="pub-title"><a href="https://doi.org/10.1504/IJDATS.2018.10011799" target="_blank" rel="noopener">An Efficient Method for Batch Updates in OPTICS Cluster Ordering</a></div>
+          <div class="pub-authors">Dhruv Kumar, Poonam Goyal, and Navneet Goyal</div>
+          <div class="pub-venue">International Journal of Data Analysis Techniques and Strategies 10 · 2018</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1504/IJDATS.2018.10011799" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2017 ── -->
+
+        <div class="pub-card" data-cat="cat9">
+          <div class="pub-title">Exact, Fast and Scalable Parallel DBSCAN for Commodity Platforms</div>
+          <div class="pub-authors">Sonal Kumari, Poonam Goyal, Ankit Sood, Dhruv Kumar, Sundar Balasubramaniam, and Navneet Goyal</div>
+          <div class="pub-venue">ICDCN 2017</div>
+        </div>
+
+        <!-- ── 2016 ── -->
+
+        <div class="pub-card" data-cat="cat9">
+          <div class="pub-title"><a href="https://doi.org/10.1109/HPCC-SMARTCITY-DSS.2016.0047" target="_blank" rel="noopener">A Fast, Scalable SLINK Algorithm for Commodity Cluster Computing Exploiting Spatial Locality</a></div>
+          <div class="pub-authors">Poonam Goyal, Sonal Kumari, Sumit Sharma, Dhruv Kumar, Vivek Kishore, Sundar Balasubramaniam, and Navneet Goyal</div>
+          <div class="pub-venue">HPCC 2016</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1109/HPCC-SMARTCITY-DSS.2016.0047" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2015 ── -->
+
+        <div class="pub-card" data-cat="cat9">
+          <div class="pub-title"><a href="https://doi.org/10.1145/2684464.2684477" target="_blank" rel="noopener">Parallelizing OPTICS for Commodity Clusters</a></div>
+          <div class="pub-authors">Poonam Goyal, Sonal Kumari, Dhruv Kumar, Sundar Balasubramaniam, Navneet Goyal, Saiyedul Islam, and Jagat Sesh Challa</div>
+          <div class="pub-venue">ICDCN 2015</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/2684464.2684477" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── 2014 ── -->
+
+        <div class="pub-card" data-cat="cat9">
+          <div class="pub-title"><a href="https://doi.org/10.1145/2675744.2675763" target="_blank" rel="noopener">Parallelizing OPTICS for Multicore Systems</a></div>
+          <div class="pub-authors">Poonam Goyal, Sonal Kumari, Dhruv Kumar, Sundar Balasubramaniam, and Navneet Goyal</div>
+          <div class="pub-venue">COMPUTE 2014</div>
+          <div class="pub-links"><a class="pub-link" href="https://doi.org/10.1145/2675744.2675763" target="_blank" rel="noopener">Paper ↗</a></div>
+        </div>
+
+        <!-- ── AI Safety placeholder ── -->
+        <div class="pub-card" data-cat="cat10" style="border-style:dashed;">
+          <div class="pub-title" style="color:var(--text-muted); font-style:italic;">AI Safety &amp; Jailbreaking papers — coming soon</div>
+          <div class="pub-authors" style="color:var(--text-muted);">Papers in this area are being finalized.</div>
+        </div>
+
+      </div><!-- /pub-list -->
+    </div>
+  </section>
+
+  <!-- ===== FUNDED PROJECTS ===== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <p class="section-label">Sponsored Research</p>
+      <h2>Funded Projects</h2>
+      <div style="display:flex; flex-direction:column; gap:0.9rem;">
+
+        <div class="project-card">
+          <h3>Revolutionizing Indian Higher Education Institutes with Generative AI</h3>
+          <span class="project-badge"><span class="badge badge-ongoing">Ongoing</span></span>
+          <div class="project-meta">
+            <span>Funding: BITS Pilani</span>
+            <span>Budget: ₹20,00,000</span>
+            <span>Nov 2024 – Oct 2026</span>
+            <span>PI: Dr. Dhruv Kumar</span>
+          </div>
+          <p class="project-desc">Developing GenAI-powered tools and pedagogical frameworks to transform teaching and learning across engineering courses at BITS Pilani, including automated assessment, intelligent tutoring, and instructor support systems.</p>
+        </div>
+
+        <div class="project-card">
+          <h3>Generative AI in Education Grant</h3>
+          <span class="project-badge"><span class="badge badge-completed">Completed</span></span>
+          <div class="project-meta">
+            <span>Funding: WISE–IIE Higher Education Consortium</span>
+            <span>Budget: ₹30,00,000</span>
+            <span>Aug 2024 – May 2025</span>
+            <span>Co-PI: Dr. Dhruv Kumar</span>
+          </div>
+          <p class="project-desc">Investigated the impact and adoption of generative AI tools in Indian higher education across multiple disciplines, producing findings in engineering education, pedagogical agent design, and K-12 rural outreach.</p>
+        </div>
+
+        <div class="project-card">
+          <h3>AI for River–Climate Modeling</h3>
+          <span class="project-badge"><span class="badge badge-completed">Completed</span></span>
+          <div class="project-meta">
+            <span>Funding: The Nature Conservancy (NGO)</span>
+            <span>Budget: ₹25,00,000</span>
+            <span>Aug 2024 – Jun 2025</span>
+            <span>Co-PI: Dr. Dhruv Kumar</span>
+          </div>
+          <p class="project-desc">Applied machine learning and AI methods to quantify the influence of land use, land cover, and climate change on river basin hydrology, targeting degraded riparian corridors for conservation-focused rehabilitation.</p>
+        </div>
+
+        <div class="project-card">
+          <h3>Google Cloud Education Grant</h3>
+          <span class="project-badge"><span class="badge badge-completed">Completed</span></span>
+          <div class="project-meta">
+            <span>Funding: Google Cloud</span>
+            <span>Budget: ₹12,50,000</span>
+            <span>Jan 2024 – Dec 2024</span>
+            <span>PI: Dr. Dhruv Kumar</span>
+          </div>
+          <p class="project-desc">Cloud compute grant supporting AI and LLM research experiments, large-scale model evaluation, and infrastructure for student research projects at BITS Pilani.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COLLABORATING UNIVERSITIES ===== -->
+  <section class="section" id="university-collabs">
+    <div class="container">
+      <p class="section-label">Academic Collaborators</p>
+      <h2>Collaborating Universities</h2>
+      <div class="uni-grid">
+        <div class="uni-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Carnegie_Mellon_University_seal.svg/100px-Carnegie_Mellon_University_seal.svg.png" alt="CMU" loading="lazy">
+          <span>Carnegie Mellon University</span>
+        </div>
+        <div class="uni-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/University_of_Minnesota_Logo.svg/100px-University_of_Minnesota_Logo.svg.png" alt="UMN" loading="lazy">
+          <span>University of Minnesota</span>
+        </div>
+        <div class="uni-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/UMass_Amherst_seal.svg/100px-UMass_Amherst_seal.svg.png" alt="UMass Amherst" loading="lazy">
+          <span>UMass Amherst</span>
+        </div>
+        <div class="uni-item">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/IIIT_Delhi_Logo.jpg/100px-IIIT_Delhi_Logo.jpg" alt="IIIT Delhi" loading="lazy">
+          <span>IIIT Delhi</span>
+        </div>
+        <div class="uni-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NC_State_brick_logo.svg/100px-NC_State_brick_logo.svg.png" alt="NC State" loading="lazy">
+          <span>NC State University</span>
+        </div>
+        <div class="uni-item">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/UIUC_Logo.jpg/100px-UIUC_Logo.jpg" alt="UIUC" loading="lazy">
+          <span>Univ. of Illinois Urbana-Champaign</span>
+        </div>
+        <div class="uni-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/University_of_Michigan_logo.svg/100px-University_of_Michigan_logo.svg.png" alt="U Michigan" loading="lazy">
+          <span>University of Michigan</span>
+        </div>
+        <div class="uni-item">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/KIIT_University_logo.svg/100px-KIIT_University_logo.svg.png" alt="KIIT" loading="lazy">
+          <span>KIIT Bhubaneswar</span>
+        </div>
+        <div class="uni-item">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/100px-IIT_Madras_Logo.svg.png" alt="IIT Madras" loading="lazy">
+          <span>IIT Madras</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PATENTS ===== -->
+  <section class="section" id="patents">
+    <div class="container">
+      <p class="section-label">IP</p>
+      <h2>Patents</h2>
+      <div class="coming-soon">
+        <div class="coming-soon-title">Coming Soon</div>
+        Patent filings are in progress. Check back for updates.
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>Phantom Grad Lab</strong><br>
+        BITS Pilani, Rajasthan, India — 333031
+      </div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="people.html">People</a>
+        <a href="connect.html">Contact</a>
+        <a href="#" target="_blank" rel="noopener">Substack</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
+  <script src="js/filter.js"></script>
+</body>
+</html>
