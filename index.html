@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phantom Grad Lab — BITS Pilani</title>
+  <title>PhantomGrad — BITS Pilani</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="page-body">
@@ -11,7 +11,7 @@
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-inner">
-      <a class="nav-logo" href="index.html">Phantom Grad Lab</a>
+      <a class="nav-logo" href="index.html">PhantomGrad</a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -27,7 +27,7 @@
         <li><a href="news.html">News</a></li>
         <li><a href="connect.html">Let's Connect</a></li>
       </ul>
-      <a class="nav-substack" href="#" target="_blank" rel="noopener">
+      <a class="nav-substack" href="https://phantomgrad.substack.com/" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V6.81h21.08v1.432zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v1.431h21.08V0z"/></svg>
         Blog
       </a>
@@ -37,18 +37,33 @@
   <!-- Hero -->
   <section class="section" style="padding-top:4rem; padding-bottom:3rem; border-bottom:1px solid var(--border);">
     <div class="container">
-      <p class="section-label">BITS Pilani · Rajasthan, India</p>
-      <h1 style="max-width:680px; margin-bottom:1rem;">Phantom Grad Lab</h1>
-      <p style="font-size:1.1rem; max-width:620px; color:var(--text-muted); margin-bottom:2rem;">
-        Advancing AI through rigorous research, responsible deployment, and real-world impact.
-      </p>
-      <p style="max-width:680px; font-size:0.9rem; color:var(--text-muted);">
-        We are an AI research group at BITS Pilani working at the intersection of large language models,
-        intelligent systems, and real-world applications. Our work spans foundational research on LLM
-        evaluation, interpretability, and training — and applied projects in education, software engineering,
-        environmental science, and beyond. We partner with industry, government agencies, and NGOs to
-        translate research into impact.
-      </p>
+      <div class="hero-layout">
+        <div class="hero-text">
+          <p class="section-label">BITS Pilani · Rajasthan, India</p>
+          <h1 style="margin-bottom:1rem;">PhantomGrad</h1>
+          <p style="font-size:1.1rem; max-width:620px; color:var(--text-muted); margin-bottom:1.5rem;">
+            Advancing AI through rigorous research, responsible deployment, and real-world impact.
+          </p>
+          <p style="max-width:660px; font-size:0.9rem; color:var(--text-muted);">
+            PhantomGrad is an AI research group at BITS Pilani, led by
+            <a href="people.html" style="color:var(--text-muted);">Professor Dhruv Kumar</a>,
+            a leading AI scientist, professor, and consultant in India.
+            We work at the intersection of large language models, intelligent systems, and real-world applications —
+            spanning foundational research on LLM evaluation, interpretability, and training, and applied projects
+            in education, software engineering, environmental science, and beyond. We partner with industry,
+            government agencies, and NGOs to translate research into impact.
+          </p>
+        </div>
+        <div class="hero-photo-col">
+          <img
+            class="hero-director-photo"
+            src="https://kudhru.github.io/assets/img/prof_pic_cropped.jpeg"
+            alt="Prof. Dhruv Kumar"
+            onerror="this.src='assets/photos/placeholder.svg'">
+          <div class="hero-photo-name">Prof. Dhruv Kumar</div>
+          <div class="hero-photo-role">Director, PhantomGrad<br>Asst. Professor, BITS Pilani</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -196,14 +211,14 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-left">
-        <strong>Phantom Grad Lab</strong><br>
+        <strong>PhantomGrad</strong><br>
         BITS Pilani, Rajasthan, India — 333031
       </div>
       <div class="footer-links">
         <a href="research.html">Research</a>
         <a href="people.html">People</a>
         <a href="connect.html">Contact</a>
-        <a href="#" target="_blank" rel="noopener">Substack</a>
+        <a href="https://phantomgrad.substack.com/" target="_blank" rel="noopener">Substack</a>
       </div>
     </div>
   </footer>
