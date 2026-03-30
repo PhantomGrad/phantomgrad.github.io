@@ -1,31 +1,46 @@
-// Publication filter — no dependencies
+// Publication filter — status (Published / Pre-prints) × topic (cat1–cat10)
+// Both filters are independent and combine: a card shows only when it matches both.
 (function () {
-  const buttons = document.querySelectorAll('.filter-btn');
-  const cards   = document.querySelectorAll('.pub-card');
-  const countEl = document.getElementById('pub-count');
+  var activeCat    = 'all';
+  var activeStatus = 'all';
+  var countEl      = document.getElementById('pub-count');
 
-  function updateCount() {
-    const visible = document.querySelectorAll('.pub-card:not(.hidden)').length;
+  function applyFilters() {
+    var visible = 0;
+    document.querySelectorAll('.pub-card').forEach(function (card) {
+      var cats      = (card.getAttribute('data-cat') || '').split(' ');
+      var status    = card.getAttribute('data-status') || 'published';
+      var catMatch  = activeCat    === 'all' || cats.indexOf(activeCat)    !== -1;
+      var statMatch = activeStatus === 'all' || status === activeStatus;
+      if (catMatch && statMatch) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
     if (countEl) countEl.textContent = visible;
   }
 
-  buttons.forEach(btn => {
+  // Status buttons
+  document.querySelectorAll('.filter-status').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      buttons.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-
-      const cat = this.dataset.cat;
-      cards.forEach(card => {
-        if (cat === 'all') {
-          card.classList.remove('hidden');
-        } else {
-          const cats = (card.dataset.cat || '').split(' ');
-          card.classList.toggle('hidden', !cats.includes(cat));
-        }
-      });
-      updateCount();
+      document.querySelectorAll('.filter-status').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeStatus = btn.getAttribute('data-status');
+      applyFilters();
     });
   });
 
-  updateCount();
+  // Topic buttons
+  document.querySelectorAll('.filter-topic').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.filter-topic').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeCat = btn.getAttribute('data-cat');
+      applyFilters();
+    });
+  });
+
+  applyFilters();
 })();

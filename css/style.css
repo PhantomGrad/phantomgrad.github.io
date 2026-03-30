@@ -264,12 +264,18 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border);
   color: var(--text-muted);
 }
+.badge-preprint {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-weight: 500;
+}
 
 /* ---------- Filter Bar (Publications) ---------- */
 .filter-bar {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  flex-direction: column;
+  gap: 0.45rem;
   margin-bottom: 1.75rem;
   position: sticky;
   top: var(--nav-height);
@@ -277,6 +283,29 @@ img { max-width: 100%; display: block; }
   padding: 0.75rem 0;
   z-index: 50;
   border-bottom: 1px solid var(--border);
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.filter-group-status .filter-btn {
+  font-size: 0.73rem;
+}
+
+.filter-group-status .filter-btn.active {
+  background: var(--text-muted);
+  color: var(--bg);
+  border-color: var(--text-muted);
+}
+
+.filter-group-topic .filter-btn.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
 }
 
 .filter-btn {
@@ -292,11 +321,6 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-.filter-btn.active {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-}
 
 /* ---------- Publication Grid ---------- */
 .pub-list {
