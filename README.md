@@ -54,6 +54,9 @@ For preprints, add a badge inside `<div class="pub-badges">`:
 | `cat8` | Distributed Systems |
 | `cat9` | Data Mining |
 | `cat10` | AI Safety |
+| `cat11` | Multi-lingual & Cultural AI |
+| `cat12` | Games & Sports AI |
+| `cat13` | Bias in LLMs |
 
 A paper can belong to multiple categories: `data-cat="cat1 cat2"`.
 
