@@ -684,7 +684,8 @@ footer {
 
 .collab-logo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+  grid-auto-rows: 78px;
   gap: 1rem 1.5rem;
   margin-bottom: 2.5rem;
 }
@@ -699,7 +700,8 @@ footer {
   gap: 0.6rem;
   text-align: center;
   transition: border-color 0.15s;
-  min-height: 76px;
+  min-height: 0;
+  height: 100%;
   justify-content: center;
 }
 .collab-logo-item:hover { border-color: var(--accent); }
@@ -713,6 +715,7 @@ footer {
   font-weight: 700;
   line-height: 1.25;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 /* ---------- University Collabs (Research page) ---------- */
 .uni-grid {
@@ -849,5 +852,5 @@ footer {
   .filter-bar { gap: 0.3rem; }
   .photo-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
   .theme-grid { grid-template-columns: 1fr; }
-  .collab-logo-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .collab-logo-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
 }
