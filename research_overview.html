@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oracle-Agnostic Agentic Loops for Text Quality Optimization</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #222636;
+    --border: #2e3348;
+    --accent: #6c8ef5;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --accent4: #f59e0b;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --pass: #34d399;
+    --fail: #f87171;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0f1117 0%, #1a1d27 40%, #1e1b35 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 72px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(108,142,245,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(108,142,245,0.12);
+    border: 1px solid rgba(108,142,245,0.3);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #e2e8f0 30%, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    max-width: 640px;
+    margin: 0 auto 32px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .badge span { color: var(--text); font-weight: 600; }
+
+  main { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+  section { margin-top: 64px; }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 .icon {
+    width: 32px; height: 32px;
+    background: rgba(108,142,245,0.12);
+    border: 1px solid rgba(108,142,245,0.25);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .section-intro {
+    color: var(--muted);
+    margin-bottom: 28px;
+    max-width: 720px;
+  }
+
+  /* Loop diagram */
+  .loop-diagram {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .loop-diagram::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .loop-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .loop-step {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+    min-width: 130px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .loop-step:hover { border-color: var(--accent); }
+
+  .loop-step .step-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .loop-step .step-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .loop-step .step-sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .loop-arrow {
+    font-size: 22px;
+    color: var(--accent);
+    padding: 0 6px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .loop-back {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .loop-back-line {
+    flex: 1;
+    max-width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), var(--accent), var(--border), transparent);
+  }
+
+  .loop-back-arrow {
+    font-size: 20px;
+    color: var(--accent2);
+  }
+
+  .threshold-note {
+    margin-top: 20px;
+    background: rgba(52,211,153,0.07);
+    border: 1px solid rgba(52,211,153,0.2);
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 13px;
+    color: var(--pass);
+    text-align: center;
+  }
+
+  /* Key insight box */
+  .insight-box {
+    background: linear-gradient(135deg, rgba(108,142,245,0.07), rgba(167,139,250,0.07));
+    border: 1px solid rgba(108,142,245,0.25);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin: 28px 0;
+    position: relative;
+  }
+
+  .insight-box .insight-tag {
+    position: absolute;
+    top: -12px; left: 24px;
+    background: var(--bg);
+    border: 1px solid rgba(108,142,245,0.3);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    border-radius: 20px;
+  }
+
+  .insight-box p {
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* Oracle table */
+  .oracle-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+
+  .oracle-table th {
+    text-align: left;
+    padding: 10px 16px;
+    background: var(--surface2);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .oracle-table th:first-child { border-radius: 8px 0 0 0; }
+  .oracle-table th:last-child { border-radius: 0 8px 0 0; }
+
+  .oracle-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .oracle-table tr:last-child td { border-bottom: none; }
+  .oracle-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .yes { color: var(--pass); font-weight: 600; }
+  .no { color: var(--fail); font-weight: 600; }
+  .our { color: var(--accent); font-weight: 700; }
+
+  .oracle-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* Experiment cards */
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 22px 20px;
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: default;
+  }
+
+  .exp-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .exp-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .exp-id {
+    background: rgba(108,142,245,0.12);
+    border: 1px solid rgba(108,142,245,0.25);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .exp-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .exp-rq {
+    font-size: 12px;
+    color: var(--accent2);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .exp-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .exp-tag {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .tag-core { background: rgba(108,142,245,0.12); color: var(--accent); }
+  .tag-start { background: rgba(52,211,153,0.12); color: var(--pass); }
+  .tag-future { background: rgba(245,158,11,0.12); color: var(--accent4); }
+
+  /* Result-agnostic section */
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .outcome-card {
+    border-radius: 12px;
+    padding: 22px;
+    border: 1px solid;
+  }
+
+  .outcome-positive {
+    background: rgba(52,211,153,0.06);
+    border-color: rgba(52,211,153,0.25);
+  }
+
+  .outcome-negative {
+    background: rgba(248,113,113,0.06);
+    border-color: rgba(248,113,113,0.25);
+  }
+
+  .outcome-mixed {
+    background: rgba(245,158,11,0.06);
+    border-color: rgba(245,158,11,0.25);
+  }
+
+  .outcome-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .outcome-positive .outcome-label { color: var(--pass); }
+  .outcome-negative .outcome-label { color: var(--fail); }
+  .outcome-mixed .outcome-label { color: var(--accent4); }
+
+  .outcome-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .outcome-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* Connection to AI discovery */
+  .analogy-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 600px) { .analogy-row { grid-template-columns: 1fr; } }
+
+  .analogy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+
+  .analogy-card .system {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent2);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .analogy-card .loop-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .analogy-card .loop-desc strong { color: var(--text); }
+
+  /* RQ list */
+  .rq-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .rq-list li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .rq-num {
+    background: rgba(108,142,245,0.12);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    margin-top: 1px;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 80px;
+  }
+
+  .footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .footer a:hover { text-decoration: underline; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 56px 0 0;
+  }
+
+  /* Code block */
+  .code-block {
+    background: #0d0f18;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: 16px 0;
+    color: #c9d1d9;
+  }
+
+  .code-block .c-comment { color: #6a737d; }
+  .code-block .c-key { color: #79c0ff; }
+  .code-block .c-str { color: #a5d6ff; }
+  .code-block .c-val { color: #56d364; }
+  .code-block .c-arrow { color: var(--accent2); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">Research Proposal · 2026</div>
+  <h1>Oracle-Agnostic Agentic Loops<br>for Text Quality Optimization</h1>
+  <p>A prompt-only, training-free framework that iteratively improves LLM-generated text against <em>any</em> quality criterion — no gradients, no fine-tuning, no model access required.</p>
+  <div class="badges">
+    <div class="badge"><span>No Training</span></div>
+    <div class="badge"><span>No Gradients</span></div>
+    <div class="badge"><span>Any Quality Oracle</span></div>
+    <div class="badge"><span>Claude CLI</span></div>
+    <div class="badge">Venue target: <span>EMNLP / ACL 2026</span></div>
+  </div>
+</div>
+
+<main>
+
+  <!-- Core Idea -->
+  <section>
+    <h2><span class="icon">💡</span> The Core Idea</h2>
+    <p class="section-intro">A self-evolving agentic loop where an LLM iteratively rewrites its output guided solely by external quality scores — no access to model internals needed.</p>
+
+    <div class="loop-diagram">
+      <div class="loop-steps">
+        <div class="loop-step">
+          <div class="step-num">Step 1</div>
+          <div class="step-label">LLM Generates</div>
+          <div class="step-sub">text<sub>t</sub></div>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step">
+          <div class="step-num">Step 2</div>
+          <div class="step-label">Oracle Scores</div>
+          <div class="step-sub">score = f(text<sub>t</sub>)</div>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step">
+          <div class="step-num">Step 3</div>
+          <div class="step-label">Inject Feedback</div>
+          <div class="step-sub">score → prompt</div>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step">
+          <div class="step-num">Step 4</div>
+          <div class="step-label">LLM Rewrites</div>
+          <div class="step-sub">text<sub>t+1</sub></div>
+        </div>
+      </div>
+      <div class="loop-back">
+        <div class="loop-back-line"></div>
+        <div class="loop-back-arrow">↩</div>
+        <span>repeat until all oracles pass</span>
+        <div class="loop-back-line"></div>
+      </div>
+      <div class="threshold-note">
+        ✓ &nbsp; Loop terminates when score crosses the target threshold — or max iterations reached
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-tag">Key Insight</div>
+      <p>The oracle only needs to return a <strong>score</strong>. It does not need to be differentiable, open-source, or even documented internally. This makes the loop applicable to grammar checkers, readability formulas, factuality verifiers, and AI detectors — <em>all with the same code, zero modification.</em></p>
+    </div>
+  </section>
+
+  <!-- Why Prompt-Only -->
+  <section>
+    <h2><span class="icon">⚡</span> Why Prompt-Only? The Generalization Argument</h2>
+    <p class="section-intro">Existing gradient-based and token-level methods are fundamentally tethered to a single oracle type. Here is why.</p>
+
+    <table class="oracle-table">
+      <thead>
+        <tr>
+          <th>Oracle Type</th>
+          <th>Differentiable?</th>
+          <th>Gradient Methods Work?</th>
+          <th class="our">Our Loop Works?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="oracle-chip">🤖 AI Detection</span></td>
+          <td>Only with proxy</td>
+          <td class="yes">✓ with retraining</td>
+          <td class="our">✓</td>
+        </tr>
+        <tr>
+          <td><span class="oracle-chip">📖 Readability</span><br><small style="color:var(--muted); font-size:11px">Flesch-Kincaid, etc.</small></td>
+          <td class="no">No — rule-based formula</td>
+          <td class="no">✗ cannot apply</td>
+          <td class="our">✓</td>
+        </tr>
+        <tr>
+          <td><span class="oracle-chip">✍️ Grammar</span><br><small style="color:var(--muted); font-size:11px">LanguageTool, etc.</small></td>
+          <td class="no">No — rule-based</td>
+          <td class="no">✗ cannot apply</td>
+          <td class="our">✓</td>
+        </tr>
+        <tr>
+          <td><span class="oracle-chip">🔍 Factuality</span></td>
+          <td class="no">No — LLM-as-judge</td>
+          <td class="no">✗ prohibitively expensive</td>
+          <td class="our">✓</td>
+        </tr>
+        <tr>
+          <td><span class="oracle-chip">⚖️ Bias / Toxicity</span></td>
+          <td>Marginally</td>
+          <td>Requires model access</td>
+          <td class="our">✓</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:14px; color:var(--muted);">Prompt-only is not a simplified substitute — it is the <em>only general-purpose architecture</em> that works across the full space of real-world quality oracles.</p>
+  </section>
+
+  <!-- Connection to Automated Discovery -->
+  <section>
+    <h2><span class="icon">🔬</span> Connection to Automated Scientific Discovery</h2>
+    <p class="section-intro">This is an instance of a paradigm shift happening across AI: using agentic loops with external feedback signals when gradient flow is unavailable.</p>
+
+    <div class="analogy-row">
+      <div class="analogy-card">
+        <div class="system">AI Scientist · Sakana AI (2024)</div>
+        <div class="loop-desc"><strong>Generate</strong> paper → <strong>evaluate</strong> (reviewer score, experiments) → <strong>refine</strong>. Evaluator is non-differentiable.</div>
+      </div>
+      <div class="analogy-card">
+        <div class="system">FunSearch · DeepMind (2023)</div>
+        <div class="loop-desc"><strong>Generate</strong> program → <strong>run</strong> fitness function → <strong>score feeds back</strong> to LLM. No gradient through evaluator.</div>
+      </div>
+      <div class="analogy-card">
+        <div class="system">Our Work · Text Quality</div>
+        <div class="loop-desc"><strong>Generate</strong> text → <strong>score</strong> quality oracle(s) → <strong>inject score</strong> as prompt feedback → <strong>rewrite</strong>.</div>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:24px;">
+      <div class="insight-tag">The Pattern</div>
+      <p>When the evaluation function is <strong>non-differentiable</strong> — which is the norm, not the exception, in real-world settings — prompt-based feedback loops are the architecturally natural choice. This work applies that paradigm to text quality optimization and is the first to study it systematically across multiple oracle types.</p>
+    </div>
+  </section>
+
+  <!-- Research Questions -->
+  <section>
+    <h2><span class="icon">❓</span> Research Questions</h2>
+    <ul class="rq-list">
+      <li><span class="rq-num">RQ1</span> Does a prompt-only agentic loop successfully reduce AI detection scores without gradient access or training?</li>
+      <li><span class="rq-num">RQ2</span> What are the convergence dynamics — how many iterations are needed, does quality degrade as scores improve?</li>
+      <li><span class="rq-num">RQ3</span> Does the same unmodified loop successfully optimize text against non-detection oracles (readability, grammar, toxicity)?</li>
+      <li><span class="rq-num">RQ4</span> Can the loop simultaneously satisfy multiple quality constraints using a combined feedback signal?</li>
+      <li><span class="rq-num">RQ5</span> Does loop performance generalize across text domains (news, essays, Wikipedia, medical)?</li>
+      <li><span class="rq-num">RQ6</span> What is the performance cost of oracle-agnosticism vs. gradient methods on the detection task specifically?</li>
+    </ul>
+  </section>
+
+  <!-- Experiment Plan -->
+  <section>
+    <h2><span class="icon">🧪</span> Experiment Plan</h2>
+    <p class="section-intro">Eight progressive experiments, from minimal to comprehensive. Each builds on the previous. Run E1 first — everything depends on it.</p>
+
+    <div class="exp-grid">
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-id">E1</div>
+          <div class="exp-title">Feasibility</div>
+        </div>
+        <div class="exp-rq">Does the loop work at all?</div>
+        <div class="exp-desc">100 ChatGPT texts from HC3, single AI detection oracle, 10 iterations. Establishes minimum viable result. Start here.</div>
+        <span class="exp-tag tag-start">Start Here</span>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-id">E2</div>
+          <div class="exp-title">Convergence Analysis</div>
+        </div>
+        <div class="exp-rq">How many iterations? Does quality degrade?</div>
+        <div class="exp-desc">500 samples across 5 domains, 15 iterations. Identifies the "prompt ceiling" and optimal stopping point via Pareto analysis.</div>
+        <span class="exp-tag tag-core">Core</span>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-id">E3</div>
+          <div class="exp-title">Domain Generalization</div>
+        </div>
+        <div class="exp-rq">Does it work across text domains?</div>
+        <div class="exp-desc">HC3 (5 domains), OUTFOX essays, M4 Wikipedia. Tests whether performance is consistent or domain-specific.</div>
+        <span class="exp-tag tag-core">Core</span>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-id">E4</div>
+          <div class="exp-title">Multi-Oracle Optimization</div>
+        </div>
+        <div class="exp-rq">Can the loop satisfy multiple criteria at once?</div>
+        <div class="exp-desc">AI detection + readability + grammar simultaneously. Combined feedback signal. Measures metric conflicts and joint convergence.</div>
+        <span class="exp-tag tag-core">Core Claim</span>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-id">E5</div>
+          <div class="exp-title">Oracle Agnosticism Test</div>
+        </div>
+        <div class="exp-rq">Same code, all oracle types, zero modification?</div>
+        <div class="exp-desc">Run identical loop_runner.py on 4 oracle types independently. Validates the central novelty claim empirically.</div>
+        <span class="exp-tag tag-core">Key Novelty</span>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-id">E6</div>
+          <div class="exp-title">Baseline Comparison</div>
+        </div>
+        <div class="exp-rq">What do we trade away vs. gradient methods?</div>
+        <div class="exp-desc">Compare to DIPPER paraphraser and single-shot rewriting on detection task. Quantifies the cost of oracle-agnosticism.</div>
+        <span class="exp-tag tag-core">Core</span>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-id">E7</div>
+          <div class="exp-title">Prompt Ablations</div>
+        </div>
+        <div class="exp-rq">Which feedback format works best?</div>
+        <div class="exp-desc">4 feedback styles: numeric-only, prescriptive, chain-of-thought, combined. Identifies optimal prompt template.</div>
+        <span class="exp-tag tag-core">Engineering</span>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-id">E8</div>
+          <div class="exp-title">Multi-Model Study</div>
+        </div>
+        <div class="exp-rq">Does model capability drive loop performance?</div>
+        <div class="exp-desc">LLaMA, Mistral, Claude, Gemini via OpenRouter. Tests whether instruction-following quality predicts convergence speed.</div>
+        <span class="exp-tag tag-future">Future Work</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Result-Agnostic -->
+  <section>
+    <h2><span class="icon">🎯</span> Result-Agnostic Design</h2>
+    <p class="section-intro">The study is designed to be publishable regardless of outcome direction. The contribution is the systematic study itself.</p>
+
+    <div class="outcome-grid">
+      <div class="outcome-card outcome-positive">
+        <div class="outcome-label">If Results Are Positive</div>
+        <div class="outcome-title">Prompt-only loops are surprisingly competitive</div>
+        <div class="outcome-desc">We don't need gradients for this class of problem. Loops match or approach gradient methods and uniquely generalize to non-differentiable oracles.</div>
+      </div>
+      <div class="outcome-card outcome-negative">
+        <div class="outcome-label">If Results Are Negative</div>
+        <div class="outcome-title">We characterize the "prompt ceiling"</div>
+        <div class="outcome-desc">We identify the fundamental limit of prompt-only optimization and specify which oracle types require gradient methods — a principled guide for practitioners.</div>
+      </div>
+      <div class="outcome-card outcome-mixed">
+        <div class="outcome-label">If Results Are Mixed</div>
+        <div class="outcome-title">A taxonomy of oracle amenability</div>
+        <div class="outcome-desc">Some oracles respond well to natural-language feedback; others don't. We build a framework mapping oracle types to their amenability — itself a novel contribution.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; padding:16px 20px; background:var(--surface); border:1px solid var(--border); border-radius:10px; font-size:14px; color:var(--muted);">
+      <strong style="color:var(--text);">Unconditional contributions</strong> regardless of any outcome: (1) formal framework definition, (2) open-source implementation, (3) convergence characterization, (4) comparison with gradient baselines.
+    </div>
+  </section>
+
+  <!-- What the Loop Looks Like -->
+  <section>
+    <h2><span class="icon">💻</span> What the Loop Looks Like in Practice</h2>
+    <p class="section-intro">All LLM calls use the Claude CLI — no API key setup, no model weights, no GPU required for the core loop.</p>
+
+    <div class="code-block">
+<span class="c-comment"># The loop calls the oracle, builds a prompt, and calls Claude CLI</span>
+<span class="c-comment"># Same 3 lines regardless of oracle type</span>
+
+<span class="c-key">for</span> iteration <span class="c-key">in</span> range(max_iterations):
+    result  = oracle.<span class="c-val">score</span>(current_text)          <span class="c-comment"># any oracle</span>
+    prompt  = <span class="c-val">build_prompt</span>(text, result, iteration)  <span class="c-comment"># inject score as text</span>
+    current_text = <span class="c-val">claude_cli</span>(prompt)             <span class="c-comment"># claude -p "..."</span>
+
+    <span class="c-key">if</span> result.passed: <span class="c-key">break</span>                       <span class="c-comment"># threshold crossed</span>
+    </div>
+
+    <p style="font-size:13px; color:var(--muted); margin-top:8px;">The oracle is a black box that returns a score. Swap <code style="color:var(--accent); font-size:12px;">DetectionOracle</code> for <code style="color:var(--accent); font-size:12px;">ReadabilityOracle</code> or <code style="color:var(--accent); font-size:12px;">GrammarOracle</code> — the loop code does not change.</p>
+  </section>
+
+  <!-- Paper Positioning -->
+  <section>
+    <h2><span class="icon">📄</span> Paper Positioning</h2>
+    <p class="section-intro">Framed as a text quality framework paper — not an AI detection evasion paper.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
+      <div style="background:rgba(248,113,113,0.06); border:1px solid rgba(248,113,113,0.2); border-radius:12px; padding:20px;">
+        <div style="font-size:12px; font-weight:700; color:var(--fail); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Avoid This Framing</div>
+        <p style="font-size:14px; color:var(--muted);">"Bypassing AI detection systems" — dual-use concerns, likely desk-rejected at top NLP venues.</p>
+      </div>
+      <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.2); border-radius:12px; padding:20px;">
+        <div style="font-size:12px; font-weight:700; color:var(--pass); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Use This Framing</div>
+        <p style="font-size:14px; color:var(--muted);">"Oracle-agnostic text quality optimization" — in the tradition of Self-Refine, FunSearch, AI Scientist. AI detection is one application among several.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:16px; padding:18px 20px; background:var(--surface); border:1px solid var(--border); border-radius:10px;">
+      <p style="font-size:14px; color:var(--muted);"><strong style="color:var(--text);">Target venues:</strong> EMNLP 2026, ACL 2026, or NAACL 2026 (main track).</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="footer">
+  <p>Research proposal — for discussion with students and collaborators.</p>
+  <p style="margin-top:8px; font-size:12px; color:#4a5568;">Implementation uses Claude CLI · All datasets freely available on HuggingFace · CPU-only for core experiments</p>
+</div>
+
+</body>
+</html>
